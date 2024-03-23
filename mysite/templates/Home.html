@@ -6,8 +6,8 @@
     <title>Home | SeekJob</title>
 <!--    daisyui-->
 <link href="https://cdn.jsdelivr.net/npm/daisyui@4.7.3/dist/full.min.css" rel="stylesheet" type="text/css" />
+<!--  tailwind-->
 <script src="https://cdn.tailwindcss.com"></script>
-
 </head>
 <body>
 <!--navbar-->
@@ -30,11 +30,24 @@
       <li><a>Item 3</a></li>
     </ul>
   </div>
-  <button class="navbar-end">
-    <a class="btn btn-neutral"><img src="{%static 'loginIcon.png'%}" height="30" width="30" alt="Login"></a>
+<!--  optional login and logout btns-->
+  <button class="navbar-end space-x-5">
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout'%}" class="btn btn-neutral">LogOut</a>
+  {% else %}
+    <a href="{% url 'login'%}" class="btn btn-neutral"><img src="{%static 'loginIcon.png'%}" height="30" width="30" alt="Login"></a>
+  {% endif %}
   </button>
 </div>
 <br>
+<!--body-->
+<div class="max-h-screen p-20">
+  <h1>This is home page</h1>
+  {% if user.is_authenticated %}
+  <a href="{% url 'admin:index'%}" class="btn btn-neutral">admin</a>
+  {% endif %}
+
+</div>
 <!--footer-->
 <footer class="footer p-10 bg-base-200">
   <aside>

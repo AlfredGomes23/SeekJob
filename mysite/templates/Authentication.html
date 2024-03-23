@@ -9,6 +9,18 @@
 <body>
 
 <div class="container" id="container">
+<!--	signup form-->
+	<div class="form-container sign-up-container">
+		<form method="POST" action="{% url 'signup' %}">
+			<h1>Create Account</h1>
+			{% csrf_token %}
+			<input type="text" placeholder="User Name" name="username"/>
+			<input type="email" placeholder="Email" name="email" />
+			<input type="password" placeholder="Password" name="password1"/>
+			<input type="password" placeholder="Confirm Password" name="password2"/>
+			<button type="submit" class="submit">Sign Up</button>
+		</form>
+	</div>
 <!--	login form-->
 	<div class="form-container sign-in-container">
 		<form method="POST" action="{% url 'login' %}">
@@ -23,7 +35,11 @@
 <!--	form switcher-->
 	<div class="overlay-container">
 		<div class="overlay">
-
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signIn">Sign In</button>
+			</div>
 			<div class="overlay-panel overlay-right">
 				<h1>Hello, Friend!</h1>
 				<p>Enter your personal details and start journey with us</p>
@@ -32,5 +48,7 @@
 		</div>
 	</div>
 </div>
+<!--js file-->
+<script src="{% static 'Authentication.js' %}"></script>
 </body>
 </html>
