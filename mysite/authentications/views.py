@@ -36,3 +36,7 @@ def signup_user(request):
           else:
                messages.success(request, "Password didn't matched.")
      return render(request, "Authentication.html")
+
+
+def logout_user(request):
+     return redirect('login')
