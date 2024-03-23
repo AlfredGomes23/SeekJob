@@ -9,6 +9,18 @@
 <body>
 
 <div class="container" id="container">
+<!--	signup form-->
+	<div class="form-container sign-up-container">
+		<form method="POST" action="{% url 'dsignup' %}">
+			<h1>Create Account</h1>
+			{% csrf_token %}
+			<input type="text" placeholder="User Name" name="username"/>
+			<input type="email" placeholder="Email" name="email" />
+			<input type="password" placeholder="Password" name="password1"/>
+			<input type="password" placeholder="Confirm Password" name="password2"/>
+			<button type="submit" class="submit">Sign Up</button>
+		</form>
+	</div>
 <!--	login form-->
 	<div class="form-container sign-in-container">
 		<form method="POST" action="{% url 'login' %}">
