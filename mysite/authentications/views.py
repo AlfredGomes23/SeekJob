@@ -20,4 +20,19 @@ def login_user(request):
      return render(request, "Authentication.html")
 
 def signup_user(request):
+     if request.method == "POST":
+          username = request.POST["username"]
+          email = request.POST["email"]
+          if request.POST["password1"] == request.POST["password2"]:
+               password = request.POST["password1"]
+               print(username, email, password)
+               try:
+                    new_user = User.objects.create_user(username, email, password)
+                    new_user.save()
+                    messages.success(request, "SignUp Successful.")
+                    return redirect("login", )
+               except:
+                    messages.success(request, "User name exist.")
+          else:
+               messages.success(request, "Password didn't matched.")
      return render(request, "Authentication.html")
