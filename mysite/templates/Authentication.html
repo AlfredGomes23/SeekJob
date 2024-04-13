@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+	{% load static %}
 <head>
     <meta charset="UTF-8">
-    <title>AuthenticationPage</title>
-	{% load static %}
-	<link rel="stylesheet" type="text/css" href="{% static 'Authentication.css'%}">
+    <title>Login Page | SeekJob</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/Authentication.css'%}">
 </head>
 <body>
-
+<!--content-->
 <div class="container" id="container">
 <!--	signup form-->
 	<div class="form-container sign-up-container">
@@ -48,7 +48,8 @@
 		</div>
 	</div>
 </div>
+
 <!--js file-->
-<script src="{% static 'Authentication.js' %}"></script>
+<script src="{% static 'js/Authentication.js' %}"></script>
 </body>
 </html>
