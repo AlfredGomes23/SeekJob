@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'mysite',
     'authentications',
     'jobs',
+    'users',
 ]
 
 MIDDLEWARE = [
