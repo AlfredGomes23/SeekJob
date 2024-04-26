@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import UserProfile
 
 
 # Create your views here.
@@ -30,10 +31,13 @@ def signup_user(request):
             print(username, email, password)
             try:
                 new_user = User.objects.create_user(username, email, password)
-                new_user.role = role
+                print(new_user)
                 new_user.save()
+                print(role)
+                new_user_profile = UserProfile.objects.create(user=new_user, role=role)
+                new_user_profile.save()
                 messages.success(request, "SignUp Successful.")
-                return redirect("home", )
+                return redirect("login")
             except:
                 messages.success(request, "User name exist.")
         else:
