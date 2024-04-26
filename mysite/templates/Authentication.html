@@ -16,6 +16,10 @@
 			{% csrf_token %}
 			<input type="text" placeholder="User Name" name="username"/>
 			<input type="email" placeholder="Email" name="email" />
+			<select name="role" >
+				<option value="candidate">Candidate</option>
+				<option value="recruiter">Recruiter</option>
+    		</select>
 			<input type="password" placeholder="Password" name="password1"/>
 			<input type="password" placeholder="Confirm Password" name="password2"/>
 			<button type="submit" class="submit">SignUp</button>
