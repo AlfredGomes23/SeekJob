@@ -46,8 +46,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #027AE5;
+	background-color: #168CF5;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -87,6 +87,10 @@ input {
 	padding: 12px 15px;
 	margin: 8px 0;
 	width: 100%;
+}
+
+input:focus {
+    outline: 1px #027AE5 solid;
 }
 
 .container {
@@ -160,9 +164,9 @@ input {
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+	background: #098AFC;
+	background: -webkit-linear-gradient(to right, #168CF5, #027AE5);
+	background: linear-gradient(to right, #027AE5, #168CF5);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -251,10 +255,10 @@ footer a {
     text-decoration: none;
 }
 .submit{
-    background: linear-gradient(to left, #FF4B2B, #FF416C);
+    background: linear-gradient(to left, #168CF5, #027AE5);
     border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #168CF5;
+	background-color: #027AE5;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
