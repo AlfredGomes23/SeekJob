@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('contact', views.contact, name='contact'),
     path('', include("authentications.urls")),
+    path('', include("users.urls")),
 
 ]

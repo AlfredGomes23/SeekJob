@@ -70,8 +70,13 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="jobs.html">Browse Job</a></li>
+                                            {% if user.is_authenticated %}
                                             <li><a href="candidate.html">Candidates</a></li>
+                                            {% endif %}
                                             <li><a href="{%url 'contact'%}">Contact</a></li>
+                                            {% if user.is_authenticated %}
+                                            <li><a href="{%url 'profile'%}">Profile</a></li>
+                                            {% endif %}
                                         </ul>
                                     </nav>
                                 </div>
