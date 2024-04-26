@@ -24,11 +24,13 @@ def signup_user(request):
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
+        role = request.POST["role"]
         if request.POST["password1"] == request.POST["password2"]:
             password = request.POST["password1"]
             print(username, email, password)
             try:
                 new_user = User.objects.create_user(username, email, password)
+                new_user.role = role
                 new_user.save()
                 messages.success(request, "SignUp Successful.")
                 return redirect("login", )

@@ -70,19 +70,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a href="jobs.html">Browse Job</a></li>
-                                            <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="candidate.html">Candidates </a></li>
-                                                    <li><a href="job_details.html">job details </a></li>
-                                                    <li><a href="elements.html">elements</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="candidate.html">Candidates</a></li>
                                             <li><a href="{%url 'contact'%}">Contact</a></li>
                                         </ul>
                                     </nav>
@@ -92,18 +80,15 @@
                                 <div class="Appointment">
                                   <!--  optional login and logout btns-->
                                     <div class="phone_num d-none d-xl-block">
+                                        {% if user.is_superuser %}
+                                            <a href="{% url 'admin:index'%}" class="btn btn-outline-warning space-x-5">Admin</a>
+                                        {% endif %}
                                         {% if user.is_authenticated %}
-      <a href="{% url 'admin:index'%}" class="btn btn-neutral space-x-5">admin</a>
-      <a href="{% url 'logout'%}" class="btn btn-neutral">LogOut</a>
-      {% else %}
-      <a href="{% url 'login'%}" class="boxed-btn3">Login</a>
-      {% endif %}
+                                            <a href="{% url 'logout'%}" class="btn btn btn-danger btn-lg">LogOut</a>
+                                        {% else %}
+                                            <a href="{% url 'login'%}" class="boxed-btn3">Login</a>
+                                        {% endif %}
                                     </div>
-                                  {% if user.is_authenticated %}
-                                    <div class="d-none d-lg-block">
-                                        <a class="boxed-btn3" href="#">Post a Job</a>
-                                    </div>
-                                  {% endif %}
                                 </div>
                             </div>
                             <div class="col-12">
