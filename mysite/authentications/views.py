@@ -33,7 +33,7 @@ def signup_user(request):
                 new_user.role = role
                 new_user.save()
                 messages.success(request, "SignUp Successful.")
-                return redirect("login", )
+                return redirect("home", )
             except:
                 messages.success(request, "User name exist.")
         else:
