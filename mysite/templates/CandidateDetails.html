@@ -1,0 +1,79 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+    <link rel="stylesheet" href="{% static 'css/Profile.css' %}">
+{% endblock %}
+
+{% block title%}Candidates Details{% endblock%}
+
+{% block content %}
+<!-- header  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Candidate Profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--/ header  -->
+<!--form starts here-->
+{% if candidate %}
+<div class="job_details_area">
+    <div class="container">
+        <form class="row" method="Post">
+                <!--personal-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <a  type="text" href="{{ candidate.photo.url }}">
+                                <img src="{{ candidate.photo.url }}" alt="" width="200" height="200" class="rounded ">
+                            </a>
+                            <input type="text" name="username" placeholder="{{ candidate.user.username }}" class="input mt-3" disabled>
+                            <input type="email" name="email" placeholder="{{ candidate.user.email }}" class="input" disabled>
+                            <input type="text" name="phone" placeholder="{{ candidate.phone_number }}" class="input" disabled>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ candidate.dob }}" class="input" disabled>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="phone" placeholder="{{ candidate.gender }}" class="input" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea placeholder="{{ candidate.address }}" rows="3" name="address" class="textarea" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--official-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <input type="text" name="current_company" placeholder="{{ candidate.current_company }}" class="input" disabled>
+                            <input type="text" name="current_company" placeholder="{{ candidate.current_role }}" class="input" disabled>
+                            <textarea rows="3" name="skills" placeholder="{{ candidate.skills }}" class="textarea" disabled></textarea>
+                            <input type="url" name="portfolio_link" placeholder="{{ candidate.portfolio_link }}" class="input" disabled>
+                            <input type="number" name="experience_on_field" placeholder="{{ candidate.experience_on_field }}" class="input" disabled>
+                            <button class="input mt-3">
+                                <a  type="text" href="{{ candidate.resume.url }}">Resume</a>
+                            </button>
+
+
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+{% else %}
+<h1 class="text-danger text-center my-5">Something is Wrong</h1>
+{% endif %}
+<!--form ends here-->
+
+
+{% endblock %}

@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from authentications.models import UserProfile
 from .forms import CandidateForm, RecruiterForm
@@ -59,3 +60,9 @@ def profileForm(request):
 def candidates(request):
     candidates = Candidate.objects.all()
     return render(request, "Candidates.html", {"candidates": candidates})
+
+
+def candidate_details(request, u_id):
+    user = User.objects.get(pk=u_id)
+    candidate = Candidate.objects.get(user=user)
+    return render(request, "CandidateDetails.html", {"candidate": candidate})

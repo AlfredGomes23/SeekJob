@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/slick.css">
 {% endblock %}
 
-{% block title%}Contact Us | SeekJob{% endblock%}
+{% block title%}Candidates{% endblock%}
 
 {% block content %}
 <!-- bradcam_area  -->
@@ -21,6 +21,7 @@
         </div>
     </div>
     <!--/ bradcam_area  -->
+
     <!-- featured_candidates_area_start  -->
     <div class="featured_candidates_area candidate_page_padding">
         {% if candidates %}
@@ -28,7 +29,7 @@
             <div class="row">
                 {% for candidate in candidates %}
                 <div class="col-md-6 col-lg-3">
-                    <a href="/#">
+                    <a href="{% url 'candidate_details' candidate.user.id%}">
                         <div class="single_candidates text-center">
                         <div class="thumb">
                             <img src="{{ candidate.photo.url }}" alt="">
@@ -46,5 +47,4 @@
 
     </div>
     <!-- featured_candidates_area_end  -->
-  <!-- ================ contact section end ================= -->
 {% endblock %}
