@@ -37,11 +37,15 @@ def signup_user(request):
                 new_user_profile = UserProfile.objects.create(user=new_user, role=role)
                 new_user_profile.save()
                 messages.success(request, "SignUp Successful.")
-                return redirect("login")
+                user = authenticate(request, username=username, password=password)
+                if user is not None:
+                    login(request, user)
+                    return redirect("profile")
             except:
                 messages.success(request, "User name exist.")
         else:
             messages.success(request, "Password didn't matched.")
+
     return render(request, "Authentication.html")
 
 

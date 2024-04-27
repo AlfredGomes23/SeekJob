@@ -1,0 +1,27 @@
+.input {
+  height: 60px;
+  border: 1px solid #E8E8E8;
+  padding: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.textarea {
+  border: 1px solid #E8E8E8;
+  padding: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.input::placeholder, .textarea::placeholder {
+  font-weight: bold;
+  opacity: 1;
+  color: #000;
+}
+.input:focus , .textarea:focus{
+    outline: 1px #00D363 solid;
+}

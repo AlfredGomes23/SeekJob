@@ -1,0 +1,131 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+    <link rel="stylesheet" href="{% static 'css/Profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<!-- header  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>your Profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--/ header  -->
+<!--form starts here-->
+{% if role == "Candidate" %}
+<div class="job_details_area">
+    <div class="container">
+        <form class="row" method="Post">
+                <!--personal-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <img src="{% static 'img\candidates\1.png'%}" alt="" width="200px" height="200px" class="rounded ">
+                            <input  type="text" onfocus="this.type='file'" onblur="this.type='text'" placeholder="Upload Your Photo" name="photo" class="input mt-3">
+                            <input type="text" name="username" placeholder="{{ candidate.user.username }}" class="input">
+                            <input type="email" name="email" placeholder="{{ candidate.user.email }}" class="input">
+                            <input type="text" name="phone" placeholder="{{ candidate.phone_number }}" class="input">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ candidate.dob }}" class="input"></div>
+                                    <div class="col">
+                                        <select name="gender" class="input" >
+				                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+				                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea placeholder="{{ candidate.address }}" rows="3" name="address" class="textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--official-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <input type="text" name="current_company" placeholder="{{ candidate.current_company }}" class="input">
+                            <input type="text" name="current_company" placeholder="{{ candidate.current_role }}" class="input">
+                            <textarea rows="3" name="skills" placeholder="{{ candidate.skills }}" class="textarea"></textarea>
+                            <input type="url" name="portfolio_link" placeholder="{{ candidate.portfolio_link }}" class="input">
+                            <input type="number" name="experience_on_field" placeholder="{{ candidate.experience_on_field }}" class="input">
+                            <input  type="text" onfocus="this.type='file'" onblur="this.type='text'" placeholder="Upload Your Resume" name="resume" class="input mt-3">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="boxed-btn3 mx-auto mt-3">Complete</button>
+        </form>
+    </div>
+</div>
+{% elif role == "Recruiter" %}
+<div class="job_details_area">
+    <div class="container">
+        <form class="row" method="Post">
+                <!--personal-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <img src="{% static 'img\candidates\1.png'%}" alt="" width="200px" height="200px" class="rounded ">
+                            <input  type="text" onfocus="this.type='file'" onblur="this.type='text'" placeholder="Upload Your Photo" name="photo" class="input mt-3">
+                            <input type="text" name="username" placeholder="{{ recruiter.user.username }}" class="input">
+                            <input type="email" name="email" placeholder="{{ recruiter.user.email }}" class="input">
+                            <input type="text" name="phone" placeholder="{{ recruiter.phone_number }}" class="input">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ recruiter.dob }}" class="input">
+                                    </div>
+                                    <div class="col">
+                                        <select name="gender" class="input">
+				                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+				                            <option value="Others">Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea placeholder="{{ recruiter.address }}" rows="3" name="address" class="textarea"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--official-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <input type="text" name="company_name" placeholder="{{ recruiter.company_name }}" class="input">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" name="Company Phone" placeholder="{{ recruiter.company_phone_number }}" class="input">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="established" placeholder="{{ recruiter.established_year }}" class="input">
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="url" name="company_web" placeholder="{{ recruiter.website}}" class="input">
+                            <input type="number" name="tenure" placeholder="{{ recruiter.tenure }}" class="input">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="boxed-btn3 mx-auto mt-3">Complete</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<h1 class="text-info text-center my-5">You are admin!</h1>
+{% endif %}
+<!--form ends here-->
+
+
+{% endblock %}
