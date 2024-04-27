@@ -54,3 +54,8 @@ def profileForm(request):
         return render(request, "ProfileForm.html", {"recruiter_form": recruiter_form})
 
     return render(request, "ProfileForm.html")
+
+
+def candidates(request):
+    candidates = Candidate.objects.all()
+    return render(request, "Candidates.html", {"candidates": candidates})
