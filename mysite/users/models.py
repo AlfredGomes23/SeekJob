@@ -18,8 +18,8 @@ class Candidate(models.Model):
     dob = models.DateField()
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES)
     address = models.CharField(max_length=200)
-    current_company = models.CharField(max_length=100, default="None")
-    current_role = models.CharField(max_length=100, default="None")
+    current_company = models.CharField(max_length=100,)
+    current_role = models.CharField(max_length=100,)
     skills = models.TextField()
     portfolio_link = models.URLField(blank=True)
     experience_on_field = models.PositiveIntegerField()
@@ -49,3 +49,4 @@ class Recruiter(models.Model):
 
     def __str__(self):
         return self.user.username + " " + self.company_name
+

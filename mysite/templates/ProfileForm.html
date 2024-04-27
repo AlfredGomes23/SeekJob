@@ -1,0 +1,36 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+
+{% endblock %}
+
+{% block content %}
+<!-- header  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Edit Profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--/ header  -->
+<!--form starts here-->
+<form action="" method="Post" enctype="multipart/form-data" class="text-center container w-50 mt-5 mb-3">
+    {% csrf_token %}
+    {% if candidate_form %}
+        {{ candidate_form.as_p }}
+    {% endif %}
+    {% if recruiter_form %}
+        {{ recruiter_form }}
+    {% endif %}
+<button type="submit" class="boxed-btn3 mx-auto mt-3">Complete</button>
+</form>
+<!--form ends here-->
+
+
+{% endblock %}

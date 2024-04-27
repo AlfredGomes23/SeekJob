@@ -13,6 +13,7 @@
                 <div class="col-xl-12">
                     <div class="bradcam_text">
                         <h3>your Profile</h3>
+                        <a href="{% url 'profile-form' %}" class="boxed-btn3 mx-auto mt-3">Edit Profile</a>
                     </div>
                 </div>
             </div>
@@ -28,25 +29,23 @@
                 <div class="col-lg-6">
                     <div class="job_sumary">
                         <div class="job_content text-center">
-                            <img src="{% static 'img\candidates\1.png'%}" alt="" width="200px" height="200px" class="rounded ">
-                            <input  type="text" onfocus="this.type='file'" onblur="this.type='text'" placeholder="Upload Your Photo" name="photo" class="input mt-3">
-                            <input type="text" name="username" placeholder="{{ candidate.user.username }}" class="input">
-                            <input type="email" name="email" placeholder="{{ candidate.user.email }}" class="input">
-                            <input type="text" name="phone" placeholder="{{ candidate.phone_number }}" class="input">
+                            <a  type="text" href="{{ candidate.photo.url }}">
+                                <img src="{{ candidate.photo.url }}" alt="" width="200" height="200" class="rounded ">
+                            </a>
+                            <input type="text" name="username" placeholder="{{ candidate.user.username }}" class="input mt-3" disabled>
+                            <input type="email" name="email" placeholder="{{ candidate.user.email }}" class="input" disabled>
+                            <input type="text" name="phone" placeholder="{{ candidate.phone_number }}" class="input" disabled>
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ candidate.dob }}" class="input"></div>
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ candidate.dob }}" class="input" disabled>
+                                    </div>
                                     <div class="col">
-                                        <select name="gender" class="input" >
-				                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-				                            <option value="Others">Others</option>
-                                        </select>
+                                        <input type="text" name="phone" placeholder="{{ candidate.gender }}" class="input" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <textarea placeholder="{{ candidate.address }}" rows="3" name="address" class="textarea"></textarea>
+                            <textarea placeholder="{{ candidate.address }}" rows="3" name="address" class="textarea" disabled></textarea>
                         </div>
                     </div>
                 </div>
@@ -54,16 +53,19 @@
                 <div class="col-lg-6">
                     <div class="job_sumary">
                         <div class="job_content text-center">
-                            <input type="text" name="current_company" placeholder="{{ candidate.current_company }}" class="input">
-                            <input type="text" name="current_company" placeholder="{{ candidate.current_role }}" class="input">
-                            <textarea rows="3" name="skills" placeholder="{{ candidate.skills }}" class="textarea"></textarea>
-                            <input type="url" name="portfolio_link" placeholder="{{ candidate.portfolio_link }}" class="input">
-                            <input type="number" name="experience_on_field" placeholder="{{ candidate.experience_on_field }}" class="input">
-                            <input  type="text" onfocus="this.type='file'" onblur="this.type='text'" placeholder="Upload Your Resume" name="resume" class="input mt-3">
+                            <input type="text" name="current_company" placeholder="{{ candidate.current_company }}" class="input" disabled>
+                            <input type="text" name="current_company" placeholder="{{ candidate.current_role }}" class="input" disabled>
+                            <textarea rows="3" name="skills" placeholder="{{ candidate.skills }}" class="textarea" disabled></textarea>
+                            <input type="url" name="portfolio_link" placeholder="{{ candidate.portfolio_link }}" class="input" disabled>
+                            <input type="number" name="experience_on_field" placeholder="{{ candidate.experience_on_field }}" class="input" disabled>
+                            <button class="input mt-3">
+                                <a  type="text" href="{{ candidate.resume.url }}">Resume</a>
+                            </button>
+
+
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="boxed-btn3 mx-auto mt-3">Complete</button>
         </form>
     </div>
 </div>
@@ -75,26 +77,23 @@
                 <div class="col-lg-6">
                     <div class="job_sumary">
                         <div class="job_content text-center">
-                            <img src="{% static 'img\candidates\1.png'%}" alt="" width="200px" height="200px" class="rounded ">
-                            <input  type="text" onfocus="this.type='file'" onblur="this.type='text'" placeholder="Upload Your Photo" name="photo" class="input mt-3">
-                            <input type="text" name="username" placeholder="{{ recruiter.user.username }}" class="input">
-                            <input type="email" name="email" placeholder="{{ recruiter.user.email }}" class="input">
-                            <input type="text" name="phone" placeholder="{{ recruiter.phone_number }}" class="input">
-                            <div class="container">
+                            <a  type="text" href="{{ recruiter.photo.url }}">
+                                <img src="{{ recruiter.photo.url }}" alt="" width="200" height="200" class="rounded ">
+                            </a>
+                            <input type="text" name="username" placeholder="{{ recruiter.user.username }}" class="input" disabled>
+                            <input type="email" name="email" placeholder="{{ recruiter.user.email }}" class="input" disabled>
+                            <input type="text" name="phone" placeholder="{{ recruiter.phone_number }}" class="input" disabled>
+                            <div class="container" disabled>
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ recruiter.dob }}" class="input">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ recruiter.dob }}" class="input" disabled>
                                     </div>
                                     <div class="col">
-                                        <select name="gender" class="input">
-				                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-				                            <option value="Others">Others</option>
-                                        </select>
+                                        <input type="text" name="phone" placeholder="{{ recruiter.gender }}" class="input" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <textarea placeholder="{{ recruiter.address }}" rows="3" name="address" class="textarea"></textarea>
+                            <textarea placeholder="{{ recruiter.address }}" rows="3" name="address" class="textarea" disabled></textarea>
                         </div>
                     </div>
                 </div>
@@ -102,23 +101,22 @@
                 <div class="col-lg-6">
                     <div class="job_sumary">
                         <div class="job_content text-center">
-                            <input type="text" name="company_name" placeholder="{{ recruiter.company_name }}" class="input">
+                            <input type="text" name="company_name" placeholder="{{ recruiter.company_name }}" class="input" disabled>
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
-                                        <input type="text" name="Company Phone" placeholder="{{ recruiter.company_phone_number }}" class="input">
+                                        <input type="text" name="Company Phone" placeholder="{{ recruiter.company_phone_number }}" class="input" disabled>
                                     </div>
                                     <div class="col">
-                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="established" placeholder="{{ recruiter.established_year }}" class="input">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="established" placeholder="{{ recruiter.established_year }}" class="input" disabled>
                                     </div>
                                 </div>
                             </div>
-                            <input type="url" name="company_web" placeholder="{{ recruiter.website}}" class="input">
-                            <input type="number" name="tenure" placeholder="{{ recruiter.tenure }}" class="input">
+                            <input type="url" name="company_web" placeholder="{{ recruiter.website}}" class="input" disabled>
+                            <input type="number" name="tenure" placeholder="{{ recruiter.tenure }}" class="input" disabled>
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="boxed-btn3 mx-auto mt-3">Complete</button>
         </form>
     </div>
 </div>
