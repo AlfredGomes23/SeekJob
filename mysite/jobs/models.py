@@ -37,7 +37,8 @@ class Job(models.Model):
     published = models.DateField(auto_now_add=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default="Any")
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
+    location = models.CharField(max_length=50, blank=False)
 
     def __str__(self):
-        return self.title+ " " +str(self.category)
+        return self.title + " - " + str(self.category) + " - " + self.location
 
