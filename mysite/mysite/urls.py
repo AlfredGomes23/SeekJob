@@ -26,6 +26,7 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('', include("authentications.urls")),
     path('', include("users.urls")),
+    path('', include("jobs.urls")),
 
 ]
 if settings.DEBUG:

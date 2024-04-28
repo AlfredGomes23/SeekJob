@@ -1,4 +1,3 @@
-from datetime import timezone
 from django.db import models
 from users.models import Recruiter
 
@@ -33,12 +32,12 @@ class Job(models.Model):
     photo = models.ImageField(upload_to='job_photos/')
     contact_number = models.CharField(max_length=20)
     deadline = models.DateField()
-    salary = models.DecimalField(max_digits=10, decimal_places=2)
+    salary = models.DecimalField(max_digits=7, decimal_places=0, blank=False)
     vacancy = models.PositiveIntegerField()
     published = models.DateField(auto_now_add=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default="Any")
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.title+ " " +self.category
+        return self.title+ " " +str(self.category)
 
