@@ -8,7 +8,10 @@ from .models import Candidate, Recruiter
 
 @login_required
 def profile(request):
-    user_profile = UserProfile.objects.get(user=request.user)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        return render(request, "Profile.html", {"role": "Superuser"})
     user_role = user_profile.role
 
     if user_role == "Candidate":
@@ -25,7 +28,10 @@ def profile(request):
 
 
 def profileForm(request):
-    user_profile = UserProfile.objects.get(user=request.user)
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except UserProfile.DoesNotExist:
+        return render(request, "Profile.html", {"role": "Superuser"})
     user_role = user_profile.role
 
     if user_role == "Candidate":

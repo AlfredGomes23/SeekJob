@@ -13,7 +13,9 @@
                 <div class="col-xl-12">
                     <div class="bradcam_text">
                         <h3>your Profile</h3>
-                        <a href="{% url 'profile-form' %}" class="boxed-btn3 mx-auto mt-3">Edit Profile</a>
+                        {% if role == "Candidate" or role == "Recruiter" %}
+                            <a href="{% url 'profile-form' %}" class="boxed-btn3 mx-auto mt-3">Edit Profile</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
