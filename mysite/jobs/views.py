@@ -12,8 +12,8 @@ def jobs(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
         user_role = user_profile.role
-        print(user_role)
     except UserProfile.DoesNotExist:
+        messages.error(request, "Something is wrong")
         return render(request, "Jobs.html", {"jobs": jobs, "role": "Superuser"})
     return render(request, "Jobs.html", {"jobs": jobs, "role": user_role})
 
@@ -24,8 +24,10 @@ def job_details(request, j_id):
         user_profile = UserProfile.objects.get(user=request.user)
         user_role = user_profile.role
     except Job.DoesNotExist:
+        messages.error(request, "Something is wrong")
         return render(request, "JobDetails.html", {"job": None, "user_role": None, "user": request.user})
     except UserProfile.DoesNotExist:
+        messages.error(request, "Somethinh is wrong")
         user_role = None
     return render(request, "JobDetails.html", {"job": job, "user_role": user_role,  "user": request.user})
 
@@ -57,7 +59,7 @@ def update_job(request, j_id):
             job = form.save(commit=False)
             job.recruiter = request.user.recruiter
             job.save()
-            messages.error(request, "Job Updated..")
+            messages.success(request, "Job Updated.")
             return redirect(reverse('job-details', args=[j_id]))
     else:
         form = JobForm(instance=job)
@@ -69,7 +71,7 @@ def update_job(request, j_id):
 def delete_job(request, j_id):
     try:
         Job.objects.get(pk=j_id).delete()
-        messages.error(request, "Job Deleted.")
+        messages.success(request, "Job Deleted.")
     except Job.DoesNotExist:
         return messages.error(request, "Something is Wrong.")
 

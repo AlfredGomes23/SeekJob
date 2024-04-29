@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from authentications.models import UserProfile
 from .forms import CandidateForm, RecruiterForm
 from .models import Candidate, Recruiter
+from django.contrib import messages
 
 
 @login_required
@@ -31,9 +31,10 @@ def profile(request):
 def profileForm(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
+        user_role = user_profile.role
     except UserProfile.DoesNotExist:
+        messages.error(request, "Something is wrong")
         return render(request, "Profile.html", {"role": "Superuser"})
-    user_role = user_profile.role
 
     if user_role == "Candidate":
         if request.method == "POST":
@@ -42,6 +43,7 @@ def profileForm(request):
                 candidate = candidate_form.save(commit=False)
                 candidate.user = request.user
                 candidate.save()
+                messages.success(request, "Profile Saved.")
                 return redirect("profile")
         else:
             candidate_form = CandidateForm()
@@ -55,6 +57,7 @@ def profileForm(request):
                 recruiter = recruiter_form.save(commit=False)
                 recruiter.user = request.user
                 recruiter.save()
+                messages.success(request, "Profile Saved.")
                 return redirect("profile")
         else:
             recruiter_form = RecruiterForm()
@@ -72,11 +75,19 @@ def candidates(request):
 
 @login_required
 def candidate_details(request, c_id):
-    candidate = Candidate.objects.get(pk=c_id)
+    try:
+        candidate = Candidate.objects.get(pk=c_id)
+    except Candidate.DoesNotExist:
+        messages.error(request, "Something is wrong.")
+        candidate = None
     return render(request, "CandidateDetails.html", {"candidate": candidate})
 
 
 @login_required
 def recruiter_details(request, r_id):
-    recruiter = Recruiter.objects.get(pk=r_id)
+    try:
+        recruiter = Recruiter.objects.get(pk=r_id)
+    except Recruiter.DoesNotExist:
+        messages.error(request, "Something is wrong.")
+        recruiter = None
     return render(request, "RecruiterDetails.html", {"recruiter": recruiter})

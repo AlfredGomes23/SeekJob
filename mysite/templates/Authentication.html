@@ -54,5 +54,20 @@
 
 <!--js file-->
 <script src="{% static 'js/Authentication.js' %}"></script>
+<!--sweetalert-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    {% if messages %}
+        {% for message in messages%}
+            Swal.fire({
+                position: "center",
+                icon: "{{ message.tags }}",
+                title: "{{ message }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        {% endfor %}
+    {% endif%}
+</script>
 </body>
 </html>

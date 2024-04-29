@@ -1,8 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, Email, Subscriber
 
 
 # Create your views here.
@@ -14,9 +15,10 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            messages.success(request, "Login successful.")
             return redirect("home")
         else:
-            messages.success(request, "There was an error occurred.")
+            messages.error(request, "There was an error occurred.")
             return redirect("login")
     return render(request, "Authentication.html")
 
@@ -42,13 +44,34 @@ def signup_user(request):
                     login(request, user)
                     return redirect("profile-form")
             except:
-                messages.success(request, "User name exist.")
+                messages.error(request, "User name exist.")
         else:
-            messages.success(request, "Password didn't matched.")
+            messages.error(request, "Password didn't matched.")
 
     return render(request, "Authentication.html")
 
 
+@login_required
 def logout_user(request):
     logout(request)
+    messages.success(request, "Logout successful.")
     return redirect('home')
+
+
+def send_email(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        sub = request.POST.get('subject')
+        message = request.POST.get('message')
+        Email.objects.create(name=name, email=email, sub=sub, message=message)
+        return messages.success(request, "Email Sent.")
+    return redirect("contact")
+
+
+def subscribe(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        Subscriber.objects.get_or_create(email=email)
+        return messages.success(request, "Subscribed.")
+    return redirect(request.META.get('HTTP_REFERER', '/'))

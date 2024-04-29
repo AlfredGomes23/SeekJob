@@ -1,6 +1,5 @@
-from django.shortcuts import render
-from jobs.models import Category
-from jobs.models import Job
+from django.shortcuts import render, redirect
+from jobs.models import Category, Job
 
 
 def home(request):
@@ -11,4 +10,6 @@ def home(request):
 
 def contact(request):
     return render(request, 'ContactUS.html')
+
+
 

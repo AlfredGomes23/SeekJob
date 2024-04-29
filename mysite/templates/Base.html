@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js" lang="zxx">
-
 {% load static %}
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -106,7 +104,6 @@
     </header>
   <!-- navbar-end -->
 
-
 <!--  content block here-->
 {% block content %}
 <!--  content-->
@@ -172,8 +169,8 @@
                             <h3 class="footer_title">
                                 Subscribe
                             </h3>
-                            <form action="#" class="newsletter_form">
-                                <input type="text" placeholder="Enter your mail">
+                            <form action="{% url 'subscribe' %}" class="newsletter_form">
+                                <input type="email" placeholder="Enter your mail">
                                 <button type="submit">Subscribe</button>
                             </form>
                             <p class="newsletter_text">Esteem spirit temper too say adieus who direct esteem esteems
@@ -225,6 +222,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="{% static 'js/jquery.form.js' %}"></script>
     <script src="{% static 'js/jquery.validate.min.js' %}"></script>
     <script src="{% static 'js/mail-script.js' %}"></script>
+<!--sweetalert-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    {% if messages %}
+        {% for message in messages%}
+            Swal.fire({
+                position: "center",
+                icon: "{{ message.tags }}",
+                title: "{{ message }}",
+                showConfirmButton: false,
+                timer: 2000
+            });
+        {% endfor %}
+    {% endif%}
+</script>
 </body>
 
 </html>
