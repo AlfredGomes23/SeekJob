@@ -1,3 +1,4 @@
+from django.core.validators import MinValueValidator
 from django.db import models
 from users.models import Recruiter
 
@@ -31,13 +32,13 @@ class Job(models.Model):
     details = models.TextField(blank=False, null=False)
     photo = models.ImageField(upload_to='job_photos/', blank=False)
     contact_number = models.CharField(max_length=20, blank=False, null=False)
-    deadline = models.DateField()
-    salary = models.DecimalField(max_digits=7, decimal_places=0, blank=False)
-    vacancy = models.PositiveIntegerField()
+    deadline = models.DateField(blank=False)
+    salary = models.DecimalField(max_digits=7, decimal_places=0, validators=[MinValueValidator(100)])
+    vacancy = models.PositiveIntegerField(validators=[MinValueValidator(1)])
     published = models.DateField(auto_now_add=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default="Any")
-    recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE)
-    location = models.CharField(max_length=50, blank=False)
+    recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE, null=False)
+    location = models.CharField(max_length=50, blank=False, null=False)
 
     def __str__(self):
         return self.title + " - " + str(self.category) + " - " + self.location
