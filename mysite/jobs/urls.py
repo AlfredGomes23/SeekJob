@@ -20,6 +20,9 @@ from . import views
 
 urlpatterns = [
     path('jobs', views.jobs, name='jobs'),
+    path('job-details/<int:j_id>', views.job_details, name='job-details'),
     path('create-job', views.create_job, name='create-job'),
+    path('update-job/<int:j_id>', views.update_job, name='update-job'),
+    path('delete-job/<int:j_id>', views.delete_job, name='delete-job'),
 
 ]
