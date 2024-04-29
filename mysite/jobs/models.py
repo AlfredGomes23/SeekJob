@@ -10,6 +10,14 @@ class Category(models.Model):
         return self.category
 
 
+class Location(models.Model):
+    name = models.CharField(max_length=50, blank=False, null=False)
+    country = models.CharField(max_length=100, blank=False, null=False)
+
+    def __str__(self):
+        return f"{self.name}, {self.country}"
+
+
 class Job(models.Model):
     JOB_TYPE_CHOICES = [
         ('Full-time', 'Full-time'),
@@ -38,7 +46,7 @@ class Job(models.Model):
     published = models.DateField(auto_now_add=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES, default="Any")
     recruiter = models.ForeignKey(Recruiter, on_delete=models.CASCADE, null=False)
-    location = models.CharField(max_length=50, blank=False, null=False)
+    location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=False, null=False)
 
     def __str__(self):
         return self.title + " - " + str(self.category) + " - " + self.location

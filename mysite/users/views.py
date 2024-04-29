@@ -63,10 +63,12 @@ def profileForm(request):
 
     return render(request, "ProfileForm.html")
 
+
 @login_required
 def candidates(request):
     candidates = Candidate.objects.all()
     return render(request, "Candidates.html", {"candidates": candidates})
+
 
 @login_required
 def candidate_details(request, c_id):
