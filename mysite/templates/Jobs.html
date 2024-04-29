@@ -17,7 +17,7 @@
                     <div class="bradcam_text">
                         <h3>Best Jobs Available</h3>
                         {% if role != "Candidate" %}
-                        <a href="job_details.html" class="boxed-btn3">Post A Job</a>
+                        <a href="{% url 'create-job' %}" class="boxed-btn3">Post A Job</a>
                         {% endif %}
                     </div>
                 </div>

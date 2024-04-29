@@ -20,5 +20,6 @@ from . import views
 
 urlpatterns = [
     path('jobs', views.jobs, name='jobs'),
+    path('create-job', views.create_job, name='create-job'),
 
 ]

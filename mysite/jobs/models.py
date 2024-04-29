@@ -24,13 +24,13 @@ class Job(models.Model):
         ('Female', 'Female'),
         ('Others', 'Others'),
     ]
-    title = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    job_type = models.CharField(max_length=20, choices=JOB_TYPE_CHOICES)
-    role = models.CharField(max_length=255)
-    details = models.TextField()
-    photo = models.ImageField(upload_to='job_photos/')
-    contact_number = models.CharField(max_length=20)
+    title = models.CharField(max_length=255, blank=False, null=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, blank=False, null=False)
+    job_type = models.CharField(max_length=20, choices=JOB_TYPE_CHOICES, default="Full-time ")
+    role = models.CharField(max_length=255, blank=False, null=False)
+    details = models.TextField(blank=False, null=False)
+    photo = models.ImageField(upload_to='job_photos/', blank=False)
+    contact_number = models.CharField(max_length=20, blank=False, null=False)
     deadline = models.DateField()
     salary = models.DecimalField(max_digits=7, decimal_places=0, blank=False)
     vacancy = models.PositiveIntegerField()

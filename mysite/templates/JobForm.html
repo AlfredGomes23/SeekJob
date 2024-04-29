@@ -5,7 +5,7 @@
 
 {% endblock %}
 
-{% block title%}Profile Form{% endblock%}
+{% block title%}Job Form{% endblock%}
 
 {% block content %}
 <!-- header  -->
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>Edit Profile</h3>
+                        <h3>Post A New Job</h3>
                     </div>
                 </div>
             </div>
@@ -24,13 +24,8 @@
 <!--form starts here-->
 <form action="" method="Post" enctype="multipart/form-data" class="text-center container w-50 mt-5 mb-3">
     {% csrf_token %}
-    {% if candidate_form %}
-        {{ candidate_form.as_p }}
-    {% endif %}
-    {% if recruiter_form %}
-        {{ recruiter_form }}
-    {% endif %}
-<button type="submit" class="boxed-btn3 mx-auto mt-3">Complete</button>
+    {{ job_form.as_p }}
+<button type="submit" class="boxed-btn3 mx-auto mt-3">Post</button>
 </form>
 <!--form ends here-->
 
