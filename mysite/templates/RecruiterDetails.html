@@ -1,0 +1,82 @@
+{% extends 'Base.html' %}
+{% load static %}
+
+{% block extra-styles %}
+    <link rel="stylesheet" href="{% static 'css/Profile.css' %}">
+{% endblock %}
+
+{% block title%}Recruiter Details{% endblock%}
+
+{% block content %}
+<!-- header  -->
+    <div class="bradcam_area bradcam_bg_1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Recruiter Profile</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--/ header  -->
+<!--form starts here-->
+{% if recruiter %}
+<div class="job_details_area">
+    <div class="container">
+        <form class="row" method="Post">
+                <!--personal-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <a  type="text" href="{{ recruiter.photo.url }}">
+                                <img src="{{ recruiter.photo.url }}" alt="" width="200" height="200" class="rounded ">
+                            </a>
+                            <input type="text" name="username" placeholder="{{ recruiter.user.username }}" class="input" disabled>
+                            <input type="email" name="email" placeholder="{{ recruiter.user.email }}" class="input" disabled>
+                            <input type="text" name="phone" placeholder="{{ recruiter.phone_number }}" class="input" disabled>
+                            <div class="container" disabled>
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="dob" placeholder="{{ recruiter.dob }}" class="input" disabled>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" name="phone" placeholder="{{ recruiter.gender }}" class="input" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <textarea placeholder="{{ recruiter.address }}" rows="3" name="address" class="textarea" disabled></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!--official-->
+                <div class="col-lg-6">
+                    <div class="job_sumary">
+                        <div class="job_content text-center">
+                            <input type="text" name="company_name" placeholder="{{ recruiter.company_name }}" class="input" disabled>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+                                        <input type="text" name="Company Phone" placeholder="{{ recruiter.company_phone_number }}" class="input" disabled>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" onfocus="this.type='date'" onblur="this.type='text'" name="established" placeholder="{{ recruiter.established_year }}" class="input" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="url" name="company_web" placeholder="{{ recruiter.website}}" class="input" disabled>
+                            <input type="number" name="tenure" placeholder="{{ recruiter.tenure }}" class="input" disabled>
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</div>
+{% else %}
+<h1 class="text-danger text-center my-5">Something is Wrong</h1>
+{% endif %}
+<!--form ends here-->
+
+
+{% endblock %}

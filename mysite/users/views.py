@@ -27,6 +27,7 @@ def profile(request):
         return render(request, "Profile.html", {"role": user_role})
 
 
+@login_required
 def profileForm(request):
     try:
         user_profile = UserProfile.objects.get(user=request.user)
@@ -62,13 +63,18 @@ def profileForm(request):
 
     return render(request, "ProfileForm.html")
 
-
+@login_required
 def candidates(request):
     candidates = Candidate.objects.all()
     return render(request, "Candidates.html", {"candidates": candidates})
 
-
-def candidate_details(request, u_id):
-    user = User.objects.get(pk=u_id)
-    candidate = Candidate.objects.get(user=user)
+@login_required
+def candidate_details(request, c_id):
+    candidate = Candidate.objects.get(pk=c_id)
     return render(request, "CandidateDetails.html", {"candidate": candidate})
+
+
+@login_required
+def recruiter_details(request, r_id):
+    recruiter = Recruiter.objects.get(pk=r_id)
+    return render(request, "RecruiterDetails.html", {"recruiter": recruiter})

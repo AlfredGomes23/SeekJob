@@ -67,7 +67,7 @@
                             <ul>
                                 <li>Category: <span>{{ job.category }}</span></li>
                                 <li>Job Role: <span>{{ job.role }}</span></li>
-                                <li><a href="#">Recruiter: <span>{{ job.recruiter.user.username }}</span></a></li>
+                                <li><a href="{% url 'recruiter_details' job.recruiter.id %}">Recruiter: <span>{{ job.recruiter.user.username }}</span></a></li>
                                 <li>Published on: <span>{{ job.published }}</span></li>
                                 <li>Dead-line: <span>{{ job.deadline }}</span></li>
                                 <li>Vacancy: <span>{{ job.vacancy }} Position</span></li>

@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse
 from .forms import JobForm
 from .models import Job
@@ -10,9 +11,10 @@ def jobs(request):
     jobs = Job.objects.all()
     try:
         user_profile = UserProfile.objects.get(user=request.user)
+        user_role = user_profile.role
+        print(user_role)
     except UserProfile.DoesNotExist:
         return render(request, "Jobs.html", {"jobs": jobs, "role": "Superuser"})
-    user_role = user_profile.role
     return render(request, "Jobs.html", {"jobs": jobs, "role": user_role})
 
 
@@ -25,10 +27,10 @@ def job_details(request, j_id):
         return render(request, "JobDetails.html", {"job": None, "user_role": None, "user": request.user})
     except UserProfile.DoesNotExist:
         user_role = None
-
     return render(request, "JobDetails.html", {"job": job, "user_role": user_role,  "user": request.user})
 
 
+@login_required
 def create_job(request):
     if request.method == "POST":
         form = JobForm(request.POST, request.FILES)
@@ -42,6 +44,7 @@ def create_job(request):
     return render(request, "JobForm.html", {'job_form': form})
 
 
+@login_required
 def update_job(request, j_id):
     try:
         job = Job.objects.get(pk=j_id)
@@ -62,6 +65,7 @@ def update_job(request, j_id):
     return render(request, "JobForm.html", {'job_form': form})
 
 
+@login_required
 def delete_job(request, j_id):
     try:
         Job.objects.get(pk=j_id).delete()

@@ -29,7 +29,7 @@
             <div class="row">
                 {% for candidate in candidates %}
                 <div class="col-md-6 col-lg-3">
-                    <a href="{% url 'candidate_details' candidate.user.id%}">
+                    <a href="{% url 'candidate_details' candidate.id %}">
                         <div class="single_candidates text-center">
                         <div class="thumb">
                             <img src="{{ candidate.photo.url }}" alt="">

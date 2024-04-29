@@ -69,14 +69,12 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
+                                            {% if user.is_authenticated %}
                                             <li><a href="{% url 'jobs' %}">Browse Job</a></li>
-                                            {% if user.is_authenticated %}
                                             <li><a href="{% url 'candidates' %}">Candidates</a></li>
-                                            {% endif %}
-                                            <li><a href="{%url 'contact'%}">Contact</a></li>
-                                            {% if user.is_authenticated %}
                                             <li><a href="{%url 'profile'%}">Profile</a></li>
                                             {% endif %}
+                                            <li><a href="{%url 'contact'%}">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>

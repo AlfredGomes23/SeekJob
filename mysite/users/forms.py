@@ -19,7 +19,7 @@ class CandidateForm(forms.ModelForm):
             "resume",
         ]
         widgets = {
-            'photo': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
+            'photo': forms.ClearableFileInput(attrs={'class': 'form-control-file w-50 m-auto btn-outline-info'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control'}),
             'dob': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'gender': forms.Select(attrs={'class': 'form-control'}),
@@ -29,7 +29,7 @@ class CandidateForm(forms.ModelForm):
             'skills': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
             'portfolio_link': forms.URLInput(attrs={'class': 'form-control'}),
             'experience_on_field': forms.NumberInput(attrs={'class': 'form-control'}),
-            'resume': forms.FileInput(attrs={'class': 'form-control-file'}),
+            'resume': forms.FileInput(attrs={'class': 'form-control-file w-50 m-auto btn-outline-info'}),
         }
 
 
@@ -49,7 +49,7 @@ class RecruiterForm(forms.ModelForm):
             "tenure",
         ]
         widgets = {
-            "photo": forms.ClearableFileInput(attrs={"class": "form-control-file"}),
+            "photo": forms.ClearableFileInput(attrs={"class": "form-control-file w-50 m-auto btn-outline-info"}),
             "dob": forms.DateInput(attrs={"class": "form-control", "type": "date"}),
             "gender": forms.Select(attrs={"class": "form-control"}),
             "address": forms.Textarea(attrs={"class": "form-control", "rows": 3}),
