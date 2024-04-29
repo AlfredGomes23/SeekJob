@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="css/slick.css">
 {% endblock %}
 
-{% block title%}Contact Us | SeekJob{% endblock%}
+{% block title%}About Us | SeekJob{% endblock%}
 
 {% block content %}
 <!-- header  -->
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>contact</h3>
+                        <h3>About Our Team</h3>
                     </div>
                 </div>
             </div>
@@ -22,5 +22,31 @@
     </div>
 <!--/ header  -->
 
+<div class="card m-5">
+  <h5 class="card-header">Our team Members</h5>
+  <div class="card-body text-center d-flex justify-content-around">
+    <div class="col-lg-3">
+        <img src="{% static 'img/candidates\1.png'%}" class="img-thumbnail" alt="..." width="200px" height="200px">
+        <h3>Khaled Saifulla</h3>
+    </div>
+    <div class="col-lg-3">
+        <img src="{% static 'img/alfred.jpg'%}" class="img-thumbnail round" alt="..." width="200" height="200">
+        <h3>Alfred Gomes</h3>
+    </div>
+    <div class="col-lg-3">
+        <img src="{% static 'img/candidates\1.png'%}" class="img-thumbnail" alt="..." width="200" height="200">
+        <h3>Tammana Toma</h3>
+    </div>
+    </div>
+  </div>
+<div class="card m-5">
+  <h5 class="card-header">Team Contribution</h5>
+  <div class="card-body text-center d-flex justify-content-around">
+    <div class="">
+        <img src="{% static 'img/khaledGit.png'%}" class="img-thumbnail" alt="..." width="500px" height="400px">
+        <img src="{% static 'img/alfredGit.png'%}" class="img-thumbnail" alt="..." width="500px" height="400px">
+        <img src="{% static 'img/tomaGit.png'%}" class="img-thumbnail" alt="..." width="500px" height="400px">
+  </div>
+</div>
 
 {% endblock %}

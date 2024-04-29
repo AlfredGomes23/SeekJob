@@ -70,9 +70,10 @@
                                             {% if user.is_authenticated %}
                                             <li><a href="{% url 'jobs' %}">Browse Job</a></li>
                                             <li><a href="{% url 'candidates' %}">Candidates</a></li>
-                                            <li><a href="{%url 'profile'%}">Profile</a></li>
+                                            <li><a href="{%url 'profile' %}">Profile</a></li>
                                             {% endif %}
-                                            <li><a href="{%url 'contact'%}">Contact</a></li>
+                                            <li><a href="{%url 'contact' %}">Contact</a></li>
+                                            <li><a href="{%url 'about_us' %}">About Us</a></li>
                                         </ul>
                                     </nav>
                                 </div>
