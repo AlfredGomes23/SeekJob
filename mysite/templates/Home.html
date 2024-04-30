@@ -24,6 +24,28 @@
     </div>
   <!-- slider_area_end -->
 
+    <!-- catagory_area -->
+    <div class="catagory_area">
+        <div class="container">
+            <form class="row cat_search"  method="POST" action="{% url 'search-job' %}">
+                {% csrf_token %}
+                <div class="col-lg-8 col-md-4">
+                    <div class="single_input">
+                        <input type="text" placeholder="Search keyword" name="keyword">
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="job_btn">
+                        <button type="submit" class="boxed-btn3 w-100">Find Job</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--/ catagory_area -->
+
+
+
     <!-- popular_catagory_area_start  -->
     <div class="popular_catagory_area">
         <div class="container">
@@ -48,6 +70,8 @@
         </div>
     </div>
     <!-- popular_catagory_area_end  -->
+
+
 
     <!-- job_listing_area_start  -->
     <div class="job_listing_area">
