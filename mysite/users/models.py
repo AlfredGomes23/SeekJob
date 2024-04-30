@@ -1,6 +1,5 @@
 
 from django.contrib.auth.models import User
-from django.core.validators import MinValueValidator, MinLengthValidator
 from django.db import models
 
 
@@ -21,7 +20,7 @@ class Candidate(models.Model):
     current_role = models.CharField(max_length=100, blank=False, null=False)
     skills = models.TextField(blank=False, null=False)
     portfolio_link = models.URLField(blank=False, null=False)
-    experience_on_field = models.PositiveIntegerField(blank=False, null=False, validators=[MinLengthValidator(1)])
+    experience_on_field = models.PositiveIntegerField(blank=False, null=False)
     resume = models.FileField(upload_to='candidate_resumes/', blank=False, null=False)
 
     def __str__(self):
@@ -38,14 +37,14 @@ class Recruiter(models.Model):
     photo = models.ImageField(upload_to='recruiter_photos/', blank=False, null=False)
     dob = models.DateField(blank=False, null=False)
     gender = models.CharField(max_length=6, choices=GENDER_CHOICES, blank=False, null=False)
-    address = models.CharField(max_length=200, blank=False, null=False, validators=[MinLengthValidator(15)])
-    phone_number = models.CharField(max_length=20, blank=False, null=False, validators=[MinLengthValidator(6)])
-    company_name = models.CharField(max_length=100, blank=False, null=False, validators=[MinLengthValidator(3)])
-    company_phone_number = models.CharField(max_length=20, blank=False, null=False, validators=[MinLengthValidator(6)])
+    address = models.CharField(max_length=200, blank=False, null=False)
+    phone_number = models.CharField(max_length=20, blank=False, null=False)
+    company_name = models.CharField(max_length=100, blank=False, null=False)
+    company_phone_number = models.CharField(max_length=20, blank=False, null=False)
     established_year = models.DateField(blank=False, null=False)
     website = models.URLField(blank=False, null=False)
-    tenure = models.PositiveIntegerField(blank=False, null=False, validators=[MinValueValidator(1)])
+    tenure = models.PositiveIntegerField(blank=False, null=False)
 
     def __str__(self):
-        return self.user.username + " " + self.company_name
+        return self.user.username + " _ " + self.company_name
 

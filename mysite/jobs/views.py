@@ -1,9 +1,10 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse
-from .forms import JobForm
+from .forms import JobForm, SearchForm
 from .models import Job
 from authentications.models import UserProfile
 from django.contrib import messages
+from django.db.models import Q
 
 
 # Create your views here.
@@ -76,3 +77,19 @@ def delete_job(request, j_id):
         return messages.error(request, "Something is Wrong.")
 
     return redirect('jobs')
+
+
+def job_search(request):
+    jobs = Job.objects.all()
+
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            keyword = form.cleaned_data['search_keyword']
+            jobs = jobs.filter(title__icontains=keyword)
+
+    else:
+        form = SearchForm()
+
+    return render(request, 'Jobs.html', {'jobs': jobs, 'form': form})
+

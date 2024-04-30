@@ -38,7 +38,6 @@ def signup_user(request):
                 print(role)
                 new_user_profile = UserProfile.objects.create(user=new_user, role=role)
                 new_user_profile.save()
-                messages.success(request, "SignUp Successful.")
                 user = authenticate(request, username=username, password=password)
                 if user is not None:
                     login(request, user)

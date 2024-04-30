@@ -31,5 +31,9 @@ class JobForm(forms.ModelForm):
             "salary": forms.NumberInput(attrs={"class": "form-control"}),
             "vacancy": forms.NumberInput(attrs={"class": "form-control"}),
             "gender": forms.Select(attrs={"class": "form-control"}),
-            "location": forms.TextInput(attrs={"class": "form-control"}),
+            "location": forms.Select(attrs={"class": "form-control"}),
         }
+
+
+class SearchForm(forms.Form):
+    search_keyword = forms.CharField(max_length=100, required=False, widget=forms.TextInput(attrs={ "class": "form-control", "type": "text"}))

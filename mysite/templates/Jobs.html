@@ -31,22 +31,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="job_filter white-bg">
+                    <div class="">
                         <!--filter-->
-                        <div class="form_inner white-bg">
+                        <div class="">
                             <h3>Filter</h3>
-                            <form action="#">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="single_field">
-                                            <input type="text" placeholder="Search keyword">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="reset_btn mt-3">
-                            <button  class="boxed-btn3 w-100" type="submit">Filter</button>
-                        </div>
-                            </form>
+<form method="GET">
+    {% csrf_token %}
+                {{ form.as_p }}
+    <div class="reset_btn mt-3">
+        <button class="boxed-btn3 w-100" type="submit">Filter</button>
+    </div>
+</form>
+
                         </div>
                     </div>
                 </div>
