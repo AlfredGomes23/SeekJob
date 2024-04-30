@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse
-from .forms import JobForm, SearchForm
+from .forms import JobForm
 from .models import Job
 from authentications.models import UserProfile
 from django.contrib import messages
@@ -80,16 +80,20 @@ def delete_job(request, j_id):
 
 
 def job_search(request):
-    jobs = Job.objects.all()
-
+    jobs = Job.objects.all()  # Initialize with all jobs
     if request.method == 'POST':
-        form = SearchForm(request.POST)
-        if form.is_valid():
-            keyword = form.cleaned_data['search_keyword']
-            jobs = jobs.filter(title__icontains=keyword)
-
-    else:
-        form = SearchForm()
-
-    return render(request, 'Jobs.html', {'jobs': jobs, 'form': form})
+        keyword = request.POST.get("keyword")
+        if keyword:
+            jobs = Job.objects.filter(
+                Q(title__icontains=keyword) |
+                Q(role__icontains=keyword) |
+                Q(details__icontains=keyword) |
+                Q(job_type__icontains=keyword) |
+                Q(category__category__icontains=keyword) |
+                Q(location__name__icontains=keyword) |
+                Q(location__country__icontains=keyword)
+            )
+            if not jobs:
+                messages.error(request, "No jobs found matching the keyword.")
+    return render(request, 'Jobs.html', {'jobs': jobs})
 

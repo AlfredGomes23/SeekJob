@@ -48,5 +48,5 @@ class Job(models.Model):
     location = models.ForeignKey(Location, on_delete=models.CASCADE, blank=False, null=False)
 
     def __str__(self):
-        return self.title + " - " + str(self.category) + " - " + str(self.location)
+        return self.title + " - " + str(self.category) + " - " + str(self.location.name)
 

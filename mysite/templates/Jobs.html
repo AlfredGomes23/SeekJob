@@ -35,9 +35,13 @@
                         <!--filter-->
                         <div class="">
                             <h3>Filter</h3>
-<form method="GET">
+<form method="POST" action="{% url 'search-job' %}">
     {% csrf_token %}
-                {{ form.as_p }}
+<div class="col-lg-12">
+     <div class="single_field">
+         <input type="text" placeholder="Search keyword" name="keyword">
+     </div>
+</div>
     <div class="reset_btn mt-3">
         <button class="boxed-btn3 w-100" type="submit">Filter</button>
     </div>
