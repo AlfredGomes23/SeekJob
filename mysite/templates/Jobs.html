@@ -1,124 +1,123 @@
 {% extends 'Base.html' %}
 {% load static %}
 
-{% block extra-styles %}
+{% block extra - styles %}
 
 {% endblock %}
 
-{% block title%}Jobs{% endblock%}
+{% block title %}
+  Jobs
+{% endblock %}
 
 {% block content %}
-
-    <!-- bradcam_area  -->
-    <div class="bradcam_area bradcam_bg_1">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3>Best Jobs Available</h3>
-                        {% if role != "Candidate" %}
-                        <a href="{% url 'create-job' %}" class="boxed-btn3">Post A Job</a>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
+  <!-- bradcam_area -->
+  <div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="bradcam_text">
+            <h3>Best Jobs Available</h3>
+            {% if role != 'Candidate' %}
+              <a href="{% url 'create-job' %}" class="boxed-btn3">Post A Job</a>
+            {% endif %}
+          </div>
         </div>
+      </div>
     </div>
-    <!--/ bradcam_area  -->
+  </div>
+  <!-- / bradcam_area -->
 
-    <!-- job_listing_area_start  -->
-    <div class="job_listing_area plus_padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="">
-                        <!--filter-->
-                        <div class="">
-                            <h3>Filter</h3>
-<form method="POST" action="{% url 'search-job' %}" class="form-group">
-    {% csrf_token %}
-<div class="col-lg-12">
-     <div class="single_field">
-         <input type="text" placeholder="Search keyword" name="keyword" class="form-control" >
-     </div>
-</div>
-    <div class="reset_btn mt-3">
-        <button class="boxed-btn3 w-100" type="submit">Filter</button>
-    </div>
-</form>
-
-                        </div>
-                    </div>
+  <!-- job_listing_area_start -->
+  <div class="job_listing_area plus_padding">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="">
+            <!-- filter -->
+            <div class="">
+              <h3>Filter</h3>
+              <form method="POST" action="{% url 'search-job' %}#job_list" class="form-group">
+                {% csrf_token %}
+                <div class="col-lg-12">
+                  <div class="single_field">
+                    <input type="text" placeholder="{{ keyword }}" name="keyword" class="form-control" />
+                  </div>
                 </div>
-                <div class="col-lg-9">
-                    <div class="recent_joblist_wrap">
-                        <div class="recent_joblist white-bg ">
-                            <div class="row align-items-center">
-                                <div class="col-md-6">
-                                    <h4>Job Listing</h4>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="serch_cat d-flex justify-content-end">
-                                        <h3>Sort By: </h3>
-                                        {% if sort == "-salary" %}
-                                        <a href="{% url 'jobs' '-published' %}"><button class="btn ml-3 ">Most Recent</button></a>
-                                        {% else %}
-                                        <a href="{% url 'jobs' '-salary' %}"><button class="btn ml-3 btn-light">Salary: High</button></a>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% if jobs %}
-                    <div class="job_lists m-0">
-                        <div class="row">
-                            <!-- jobs-->
-                            {% for job in jobs %}
-                            <div class="col-lg-12 col-md-12">
-                                <div class="single_jobs white-bg d-flex justify-content-between">
-                                    <div class="jobs_left d-flex align-items-center">
-                                            <img src="{{ job.photo.url }}" width="75" height="75" alt="">
-                                        <div class="jobs_conetent ml-3">
-                                            <a href="{% url 'job-details' job.id %}"><h4>{{ job.title }}</h4></a>
-                                            <div class="links_locat d-flex align-items-center">
-                                                <div class="location">
-                                                    <p> <i class="fa fa-map-marker"></i> {{ job.location }}</p>
-                                                </div>
-                                                <div class="location">
-                                                    <p> <i class="fa fa-clock-o"></i>{{ job.job_type }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="jobs_right">
-                                        <div class="apply_now">
-                                            <a href="{% url 'job-details' job.id %}" class="boxed-btn3">View Details</a>
-                                        </div>
-                                        <div class="date">
-                                            <p>Date line: {{ job.deadline }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
+                <div class="reset_btn mt-3 d-flex justify-content-around">
+                  <button class="boxed-btn3" type="submit">Filter</button>
+                  <a href="{% url 'jobs' '-published' %}#job_list" class="boxed-btn4" type="button">All jobs</a>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+            <!-- sort by -->
+        <div class="col-lg-9" id="job_list">
+          <div class="recent_joblist_wrap">
+            <div class="recent_joblist white-bg">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <h4>Job Listing</h4>
+                </div>
+                <div class="col-md-6">
+                  <div class="serch_cat d-flex justify-content-end">
+                    <h3>Sort By:</h3>
+                    {% if sort == '-salary' %}
+                      <a href="{% url 'jobs' '-published' %}#job_list"><button class="btn ml-3 btn-light btn-sm">Most Recent</button></a>
+                      <a href="{% url 'jobs' '-salary' %}#job_list"><button class="btn ml-3 btn-light btn-sm" disabled>Salary: High</button></a>
                     {% else %}
-                    <h1 class="tet-center text-info">None Available now.</h1>
+                      <a href="{% url 'jobs' '-published' %}#job_list"><button class="btn ml-3 btn-light btn-sm" disabled>Most Recent</button></a>
+                      <a href="{% url 'jobs' '-salary' %}#job_list"><button class="btn ml-3 btn-light btn-sm">Salary: High</button></a>
                     {% endif %}
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
+          {% if jobs %}
+            <div class="job_lists m-0">
+              <div class="row">
+                <!-- jobs -->
+                {% for job in jobs %}
+                  <div class="col-lg-12 col-md-12">
+                    <div class="single_jobs white-bg d-flex justify-content-between">
+                      <div class="jobs_left d-flex align-items-center">
+                        <img src="{{ job.photo.url }}" width="75" height="75" alt="" />
+                        <div class="jobs_conetent ml-3">
+                          <a href="{% url 'job-details' job.id %}"><h4>{{ job.title }}</h4></a>
+                          <div class="links_locat d-flex align-items-center">
+                            <div class="location">
+                              <p>
+                                <i class="fa fa-map-marker"></i> {{ job.location }}
+                              </p>
+                            </div>
+                            <div class="location">
+                              <p>
+                                <i class="fa fa-clock-o"></i>{{ job.job_type }}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="jobs_right">
+                        <div class="apply_now">
+                          <a href="{% url 'job-details' job.id %}" class="boxed-btn3">View Details</a>
+                        </div>
+                        <div class="date">
+                          <p>Date line: {{ job.deadline }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          {% else %}
+            <h1 class="tet-center text-info">None Available now.</h1>
+          {% endif %}
         </div>
+      </div>
     </div>
-    <!-- job_listing_area_end  -->
-
-{% endblock %}
-
-{% block script %}
-<script>
-    function submitForm() {
-        document.forms[0].submit();
-    }
-</script>
+  </div>
+  <!-- job_listing_area_end -->
 {% endblock %}

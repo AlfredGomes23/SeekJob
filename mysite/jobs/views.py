@@ -16,8 +16,8 @@ def jobs(request, sort):
         user_role = user_profile.role
     except UserProfile.DoesNotExist:
         messages.error(request, "Something is wrong")
-        return render(request, "Jobs.html", {"jobs": jobs, "role": None, "sort": sort})
-    return render(request, "Jobs.html", {"jobs": jobs, "role": user_role, "sort": sort})
+        return render(request, "Jobs.html", {"jobs": jobs, "role": None, "sort": sort, "keyword": "Search Any Keyword"})
+    return render(request, "Jobs.html", {"jobs": jobs, "role": user_role, "sort": sort, "keyword": "Search Any Keyword"})
 
 
 def job_details(request, j_id):
@@ -81,9 +81,9 @@ def delete_job(request, j_id):
 
 
 def job_search(request):
-    jobs = Job.objects.all()  # Initialize with all jobs
+    jobs = Job.objects.all()
+    keyword = request.POST.get("keyword")
     if request.method == 'POST':
-        keyword = request.POST.get("keyword")
         if keyword:
             jobs = Job.objects.filter(
                 Q(title__icontains=keyword) |
@@ -96,6 +96,6 @@ def job_search(request):
             )
             if not jobs:
                 messages.error(request, "No jobs found matching the keyword.")
-    return render(request, 'Jobs.html', {'jobs': jobs})
+    return render(request, 'Jobs.html', {'jobs': jobs, "keyword": keyword})
 
 
