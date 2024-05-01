@@ -68,7 +68,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             {% if user.is_authenticated %}
-                                            <li><a href="{% url 'jobs' %}">Browse Job</a></li>
+                                            <li><a href="{% url 'jobs' '-published' %}">Browse Job</a></li>
                                             <li><a href="{% url 'candidates' %}">Candidates</a></li>
                                             <li><a href="{%url 'profile' %}">Profile</a></li>
                                             {% endif %}
@@ -238,6 +238,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         {% endfor %}
     {% endif%}
 </script>
+
 </body>
 
 </html>

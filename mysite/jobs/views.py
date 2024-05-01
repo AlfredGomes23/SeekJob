@@ -8,15 +8,16 @@ from django.db.models import Q
 
 
 # Create your views here.
-def jobs(request):
-    jobs = Job.objects.all()
+def jobs(request, sort):
+    print(sort)
+    jobs = Job.objects.order_by(sort)
     try:
         user_profile = UserProfile.objects.get(user=request.user)
         user_role = user_profile.role
     except UserProfile.DoesNotExist:
         messages.error(request, "Something is wrong")
-        return render(request, "Jobs.html", {"jobs": jobs, "role": "Superuser"})
-    return render(request, "Jobs.html", {"jobs": jobs, "role": user_role})
+        return render(request, "Jobs.html", {"jobs": jobs, "role": None, "sort": sort})
+    return render(request, "Jobs.html", {"jobs": jobs, "role": user_role, "sort": sort})
 
 
 def job_details(request, j_id):
@@ -96,4 +97,5 @@ def job_search(request):
             if not jobs:
                 messages.error(request, "No jobs found matching the keyword.")
     return render(request, 'Jobs.html', {'jobs': jobs})
+
 

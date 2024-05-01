@@ -59,12 +59,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="serch_cat d-flex justify-content-end">
-                                        <select>
-                                            <option data-display="Most Recent">Most Recent</option>
-                                            <option value="1">Marketer</option>
-                                            <option value="2">Wordpress </option>
-                                            <option value="4">Designer</option>
-                                        </select>
+                                        <h3>Sort By: </h3>
+                                        {% if sort == "-salary" %}
+                                        <a href="{% url 'jobs' '-published' %}"><button class="btn ml-3 ">Most Recent</button></a>
+                                        {% else %}
+                                        <a href="{% url 'jobs' '-salary' %}"><button class="btn ml-3 btn-light">Salary: High</button></a>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -113,4 +113,12 @@
     </div>
     <!-- job_listing_area_end  -->
 
+{% endblock %}
+
+{% block script %}
+<script>
+    function submitForm() {
+        document.forms[0].submit();
+    }
+</script>
 {% endblock %}
