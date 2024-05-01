@@ -37,34 +37,57 @@ def profileForm(request):
         return render(request, "Profile.html", {"role": "Superuser"})
 
     if user_role == "Candidate":
-        if request.method == "POST":
-            candidate_form = CandidateForm(request.POST, request.FILES)
-            if candidate_form.is_valid():
-                candidate = candidate_form.save(commit=False)
-                candidate.user = request.user
-                candidate.save()
-                messages.success(request, "Profile Saved.")
-                return redirect("profile")
-        else:
-            candidate_form = CandidateForm()
+        try:
+            candidate_profile = Candidate.objects.get(user=request.user)
+            if request.method == "POST":
+                candidate_form = CandidateForm(request.POST, request.FILES, instance=candidate_profile)
+                if candidate_form.is_valid():
+                    candidate_form.save()
+                    messages.success(request, "Profile Updated.")
+                    return redirect("profile")
+            else:
+                candidate_form = CandidateForm(instance=candidate_profile)
+        except Candidate.DoesNotExist:
+            if request.method == "POST":
+                candidate_form = CandidateForm(request.POST, request.FILES)
+                if candidate_form.is_valid():
+                    candidate = candidate_form.save(commit=False)
+                    candidate.user = request.user
+                    candidate.save()
+                    messages.success(request, "Profile Created.")
+                    return redirect("profile")
+            else:
+                candidate_form = CandidateForm()
 
         return render(request, "ProfileForm.html", {"candidate_form": candidate_form})
 
     elif user_role == "Recruiter":
-        if request.method == "POST":
-            recruiter_form = RecruiterForm(request.POST, request.FILES)
-            if recruiter_form.is_valid():
-                recruiter = recruiter_form.save(commit=False)
-                recruiter.user = request.user
-                recruiter.save()
-                messages.success(request, "Profile Saved.")
-                return redirect("profile")
-        else:
-            recruiter_form = RecruiterForm()
+        try:
+            recruiter_profile = Recruiter.objects.get(user=request.user)
+            if request.method == "POST":
+                recruiter_form = RecruiterForm(request.POST, request.FILES, instance=recruiter_profile)
+                if recruiter_form.is_valid():
+                    recruiter_form.save()
+                    messages.success(request, "Profile Updated.")
+                    return redirect("profile")
+            else:
+                recruiter_form = RecruiterForm(instance=recruiter_profile)
+        except Recruiter.DoesNotExist:
+            if request.method == "POST":
+                recruiter_form = RecruiterForm(request.POST, request.FILES)
+                if recruiter_form.is_valid():
+                    recruiter = recruiter_form.save(commit=False)
+                    recruiter.user = request.user
+                    recruiter.save()
+                    messages.success(request, "Profile Created.")
+                    return redirect("profile")
+            else:
+                recruiter_form = RecruiterForm()
 
         return render(request, "ProfileForm.html", {"recruiter_form": recruiter_form})
 
     return render(request, "ProfileForm.html")
+
 
 
 @login_required
