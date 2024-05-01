@@ -35,22 +35,23 @@
                         <!--filter-->
                         <div class="">
                             <h3>Filter</h3>
-<form method="POST" action="{% url 'search-job' %}" class="form-group">
+<form method="POST" action="{% url 'search-job' %}#job_list" class="form-group">
     {% csrf_token %}
 <div class="col-lg-12">
      <div class="single_field">
          <input type="text" placeholder="Search keyword" name="keyword" class="form-control" >
      </div>
 </div>
-    <div class="reset_btn mt-3">
-        <button class="boxed-btn3 w-100" type="submit">Filter</button>
+    <div class="reset_btn mt-3 d-flex justify-content-around">
+        <button class="boxed-btn3" type="submit">Filter</button>
+        <a href="{% url 'jobs' '-published' %}#job_list" class="boxed-btn4" type="button">All jobs</a>
     </div>
 </form>
 
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9" id="job_list">
                     <div class="recent_joblist_wrap">
                         <div class="recent_joblist white-bg ">
                             <div class="row align-items-center">
@@ -61,9 +62,11 @@
                                     <div class="serch_cat d-flex justify-content-end">
                                         <h3>Sort By: </h3>
                                         {% if sort == "-salary" %}
-                                        <a href="{% url 'jobs' '-published' %}"><button class="btn ml-3 ">Most Recent</button></a>
+                                        <a href="{% url 'jobs' '-published' %}#job_list"><button class="btn ml-3 btn-light btn-sm" >Most Recent</button></a>
+                                        <a href="{% url 'jobs' '-salary' %}#job_list"><button class="btn ml-3 btn-light btn-sm" disabled>Salary: High</button></a>
                                         {% else %}
-                                        <a href="{% url 'jobs' '-salary' %}"><button class="btn ml-3 btn-light">Salary: High</button></a>
+                                        <a href="{% url 'jobs' '-published' %}#job_list"><button class="btn ml-3 btn-light btn-sm" disabled>Most Recent</button></a>
+                                        <a href="{% url 'jobs' '-salary' %}#job_list"><button class="btn ml-3 btn-light btn-sm">Salary: High</button></a>
                                         {% endif %}
                                     </div>
                                 </div>
@@ -113,12 +116,4 @@
     </div>
     <!-- job_listing_area_end  -->
 
-{% endblock %}
-
-{% block script %}
-<script>
-    function submitForm() {
-        document.forms[0].submit();
-    }
-</script>
 {% endblock %}
