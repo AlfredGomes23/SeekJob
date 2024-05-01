@@ -82,11 +82,13 @@
                         <h3>Latest  Job Listing</h3>
                     </div>
                 </div>
+                {% if user.is_authenticated %}
                 <div class="col-lg-6">
                     <div class="brouse_job text-right">
                         <a href="{% url 'jobs' '-published' %}" class="boxed-btn4">Browse More Job</a>
                     </div>
                 </div>
+                {% endif %}
             </div>
                     {% if jobs %}
                     <div class="job_lists mt-5">
@@ -109,14 +111,16 @@
                                             </div>
                                         </div>
                                     </div>
+                                    {% if user.is_authenticated %}
                                     <div class="jobs_right">
                                         <div class="apply_now">
-                                            <a href="job_details.html" class="boxed-btn3">View Details</a>
+                                            <a href="{% url 'job-details' job.id %}" class="boxed-btn3">View Details</a>
                                         </div>
                                         <div class="date">
                                             <p>Date line: {{ job.deadline }}</p>
                                         </div>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             {% endfor %}

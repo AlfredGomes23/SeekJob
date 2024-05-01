@@ -9,7 +9,6 @@ from django.db.models import Q
 
 # Create your views here.
 def jobs(request, sort):
-    print(sort)
     jobs = Job.objects.order_by(sort)
     try:
         user_profile = UserProfile.objects.get(user=request.user)
