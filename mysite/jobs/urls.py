@@ -25,5 +25,6 @@ urlpatterns = [
     path('update-job/<int:j_id>', views.update_job, name='update-job'),
     path('delete-job/<int:j_id>', views.delete_job, name='delete-job'),
     path('search-job', views.job_search, name='search-job'),
+    path('category-jobs/<str:keyword>', views.job_category_search, name='category-jobs'),
 
 ]

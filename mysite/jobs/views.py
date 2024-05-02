@@ -98,3 +98,20 @@ def job_search(request):
     return render(request, 'Jobs.html', {'jobs': jobs, "keyword": keyword})
 
 
+def job_category_search(request, keyword):
+    jobs = Job.objects.all()
+    if keyword:
+        jobs = Job.objects.filter(
+            Q(title__icontains=keyword) |
+            Q(role__icontains=keyword) |
+            Q(details__icontains=keyword) |
+            Q(job_type__icontains=keyword) |
+            Q(category__category__icontains=keyword) |
+            Q(location__name__icontains=keyword) |
+            Q(location__country__icontains=keyword)
+        )
+        if not jobs:
+            messages.error(request, "No jobs found matching the keyword.")
+    else:
+        messages.error(request, "Something is wrong.")
+    return render(request, 'Jobs.html', {'jobs': jobs, "keyword": keyword})
